@@ -1,0 +1,11 @@
+#!/bin/bash
+
+set eu
+
+docker build -t container-test:build .
+
+# With swap
+docker run -m 1000M --cpus=2 --cpuset-cpus=1 --memory-swap=2000M --memory-swappiness=100 -v "$(pwd)":"/app" -w "/app" --rm -it container-test:build /app/inner_test
+
+# Without swap
+# docker run -m 50M --cpus=2 --cpuset-cpus=1 --rm -it -v "$(pwd)":"/app" -w "/app" container-test:build /app/inner_test

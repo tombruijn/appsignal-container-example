@@ -1,0 +1,10 @@
+#!/bin/bash
+
+set eu
+
+# Stress test memory
+stress-ng --brk 2 --stack 2 --bigheap 2 > /dev/null 2>&1 &
+
+# Start AppSignal agent in standalone mode
+./appsignal-agent
+bash
